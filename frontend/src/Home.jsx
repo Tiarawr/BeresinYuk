@@ -1,7 +1,6 @@
 import React from "react";
 import { Typewriter } from "react-simple-typewriter";
 
-
 export default function Home() {
   return (
     <div className="flex flex-col justify-start items-center h-screen bg-white text-center px-4 pt-30">
