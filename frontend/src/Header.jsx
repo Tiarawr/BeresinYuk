@@ -23,7 +23,9 @@ export default function Header() {
               Home
             </Link>
             <button className={linkClass("/submit")}>Submit</button>
-            <button className={linkClass("/message")}>Message</button>
+            <Link to="/messagebox" className={linkClass("/messagebox")}>
+              Message
+            </Link>
             <Link to="/donate" className={linkClass("/donate")}>
               Support
             </Link>
@@ -56,9 +58,9 @@ export default function Header() {
             Submit
           </Link>
           <Link
-            to="/message"
+            to="/messagebox"
             onClick={() => setIsOpen(false)}
-            className={linkClass("/message")}
+            className={linkClass("/messagebox")}
           >
             Message
           </Link>
