@@ -1,15 +1,47 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
 import Home from "./Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home2 from "./Home2";
+import Home3 from "./Home3";
+import Header from "./Header";
+import DonatePage from "./donate";
 import MessageBox from "./messagebox";
+
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <>
+              <Home />
+              <Home2 />
+              <Home3 />
+            </>
+          }
+        />
+        <Route path="/messagebox" element={<MessageBox />} />
+        <Route path="/donate" element={<DonatePage />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 export default function App() {
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/messagebox" element={<MessageBox/>}/> 
-    </Routes>
-    </BrowserRouter>
+    <Router>
+      <Header />
+      <AnimatedRoutes />
+    </Router>
   );
 }
