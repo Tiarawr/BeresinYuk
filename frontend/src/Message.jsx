@@ -1,26 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Message({ message, onClose }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white">
-      <div className="justify-start text-center text-black text-8xl mt-8 font-semibold font-['Poppins']">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="min-h-screen px-4 py-10 bg-white"
+    >
+      <div className="text-center text-black text-4xl md:text-7xl font-semibold font-['Poppins'] mb-6">
         Send your messages
       </div>
-      <div className="mx-auto mt-4 max-w-[1022px] text-center text-black text-xl font-semibold font-['Poppins'] leading-relaxed">
+
+      <div className="mx-auto max-w-4xl text-center text-black text-base md:text-xl font-semibold font-['Poppins'] leading-relaxed">
         We know that some messages carry pieces of your heart. That’s why we
         treat them with the care they deserve. Your identity stays hidden. Your
         words stay yours. Nothing is tracked, nothing is shared. Only the
         message is delivered — quietly, respectfully, privately.
       </div>
 
-      <div className="w-[893px] bg-zinc-800 rounded-[55px] mt-10 mx-auto p-8">
+      <div className="max-w-4xl w-full bg-zinc-800 rounded-3xl mt-10 mx-auto p-6 md:p-10">
         <form className="space-y-8">
           {/* From */}
           <div className="flex flex-col space-y-2">
             <label
               htmlFor="from"
-              className="text-white text-4xl font-semibold font-['Poppins']"
+              className="text-white text-2xl md:text-4xl font-semibold font-['Poppins']"
             >
               From:
             </label>
@@ -28,14 +39,7 @@ export default function Message({ message, onClose }) {
               id="from"
               type="text"
               placeholder="Your name"
-              className="
-              w-full h-20
-              bg-zinc-300 rounded-[78px]
-              px-6
-              text-black text-2xl font-['Poppins']
-              placeholder-zinc-500
-              outline-none
-            "
+              className="w-full h-14 md:h-20 bg-zinc-300 rounded-full px-6 text-black text-lg md:text-2xl font-['Poppins'] placeholder-zinc-500 outline-none"
             />
           </div>
 
@@ -43,7 +47,7 @@ export default function Message({ message, onClose }) {
           <div className="flex flex-col space-y-2">
             <label
               htmlFor="to"
-              className="text-white text-4xl font-semibold font-['Poppins']"
+              className="text-white text-2xl md:text-4xl font-semibold font-['Poppins']"
             >
               To:
             </label>
@@ -51,14 +55,7 @@ export default function Message({ message, onClose }) {
               id="to"
               type="text"
               placeholder="Who you want to send a message to"
-              className="
-              w-full h-20
-              bg-zinc-300 rounded-[78px]
-              px-6
-              text-black text-2xl font-['Poppins']
-              placeholder-zinc-500
-              outline-none
-            "
+              className="w-full h-14 md:h-20 bg-zinc-300 rounded-full px-6 text-black text-lg md:text-2xl font-['Poppins'] placeholder-zinc-500 outline-none"
             />
           </div>
 
@@ -66,46 +63,32 @@ export default function Message({ message, onClose }) {
           <div className="flex flex-col space-y-2">
             <label
               htmlFor="message"
-              className="text-white text-4xl font-semibold font-['Poppins']"
+              className="text-white text-2xl md:text-4xl font-semibold font-['Poppins']"
             >
               Message:
             </label>
             <textarea
               id="message"
               placeholder="Write your message here..."
-              rows={10}
-              className="
-              w-full
-              bg-zinc-300 rounded-[50px]
-              px-6 py-4
-              text-black text-xl font-['Poppins']
-              placeholder-zinc-500
-              placeholder:text-2xl
-              outline-none
-              resize-none
-            "
+              rows={6}
+              className="w-full bg-zinc-300 rounded-3xl px-6 py-4 text-black text-base md:text-xl font-['Poppins'] placeholder-zinc-500 placeholder:text-lg md:placeholder:text-2xl outline-none resize-none"
             />
           </div>
 
           {/* Character count & submit */}
-          <div className="flex items-center justify-between">
-            <span className="text-neutral-600 text-2xl font-normal font-['Poppins']">
+          <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-4">
+            <span className="text-neutral-400 text-lg md:text-2xl font-normal font-['Poppins']">
               0/255
             </span>
             <button
               type="submit"
-              className="
-              bg-zinc-800 text-white
-              px-6 py-3 rounded-full
-              text-2xl font-semibold font-['Poppins']
-              hover:bg-zinc-700 transition-colors
-            "
+              className="bg-zinc-800 text-white px-6 py-3 rounded-full text-lg md:text-2xl font-semibold font-['Poppins'] hover:bg-zinc-700 transition-colors"
             >
               Send
             </button>
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }

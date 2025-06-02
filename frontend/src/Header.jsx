@@ -53,16 +53,16 @@ export default function Header() {
             Home
           </Link>
           <Link
-            to="/submit"
+            to="/send"
             onClick={() => setIsOpen(false)}
-            className={linkClass("/submit")}
+            className={linkClass("/send")}
           >
             Submit
           </Link>
           <Link
-            to="/message"
+            to="/feed"
             onClick={() => setIsOpen(false)}
-            className={linkClass("/message")}
+            className={linkClass("/feed")}
           >
             Message
           </Link>
