@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Wallpage() {
   const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const currentPage = parseInt(searchParams.get("page") || "1");
   const itemsPerPage = 20;
@@ -11,7 +12,7 @@ export default function Wallpage() {
   // Sample data - replace with your actual data
   const [allMessages] = useState(() => {
     // Generate 50 sample messages for demonstration
-    return Array.from({ length: 50 }, (_, i) => ({
+    return Array.from({ length: 200 }, (_, i) => ({
       id: i + 1,
       from: `Person ${i + 1}`,
       to: "Hermanita",
@@ -145,9 +146,24 @@ export default function Wallpage() {
       {/* Header */}
       <div className="relative px-4 pt-12">
         {/* Search bar */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-xl h-[60px] bg-zinc-300 rounded-full flex items-center px-4">
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-xl h-[60px] bg-zinc-300 rounded-full flex items-center px-4 space-x-3">
+          <img
+            src="search_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+            alt="Search Icon"
+            className="w-8 h-8 text-zinc-600"
+          />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                // contoh aksi: redirect ke halaman pencarian
+                navigate(
+                  `/feed?page=1&query=${encodeURIComponent(searchQuery)}`
+                );
+              }
+            }}
             placeholder="Search someone"
             className="w-full h-full bg-transparent outline-none text-zinc-600 text-base md:text-xl font-semibold font-['Poppins'] placeholder-zinc-500"
           />
@@ -156,7 +172,7 @@ export default function Wallpage() {
         {/* Send button */}
         <Link
           to="/send"
-          className="absolute right-4 top-12 w-[50px] h-[50px] md:w-[75px] md:h-[75px] bg-zinc-800 rounded-full flex items-center justify-center hover:bg-zinc-700 transition-colors"
+          className="fixed right-4 top-12 z-50 w-[50px] h-[50px] md:w-[75px] md:h-[75px] bg-zinc-800 rounded-full flex items-center justify-center hover:bg-zinc-700 transition-colors shadow-lg"
         >
           <img
             src="mail_24dp_FFF_FILL1_wght400_GRAD0_opsz24.svg"

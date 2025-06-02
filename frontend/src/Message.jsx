@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Message({ message, onClose }) {
+  const [messageText, setMessageText] = useState("");
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const maxLength = 255;
 
   return (
     <motion.div
@@ -71,6 +76,9 @@ export default function Message({ message, onClose }) {
               id="message"
               placeholder="Write your message here..."
               rows={6}
+              maxLength={maxLength}
+              value={messageText}
+              onChange={(e) => setMessageText(e.target.value)}
               className="w-full bg-zinc-300 rounded-3xl px-6 py-4 text-black text-base md:text-xl font-['Poppins'] placeholder-zinc-500 placeholder:text-lg md:placeholder:text-2xl outline-none resize-none"
             />
           </div>
@@ -78,14 +86,14 @@ export default function Message({ message, onClose }) {
           {/* Character count & submit */}
           <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-4">
             <span className="text-neutral-400 text-lg md:text-2xl font-normal font-['Poppins']">
-              0/255
+              {messageText.length}/{maxLength}
             </span>
-            <button
-              type="submit"
+            <Link
+              to="/feed"
               className="bg-zinc-800 text-white px-6 py-3 rounded-full text-lg md:text-2xl font-semibold font-['Poppins'] hover:bg-zinc-700 transition-colors"
             >
               Send
-            </button>
+            </Link>
           </div>
         </form>
       </div>
