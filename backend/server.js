@@ -1,20 +1,22 @@
-const helmet = require("helmet");
-app.use(helmet());
-
+const mongoose = require("mongoose");
+require("dotenv").config();
+const express = require("express");
 const cors = require("cors");
+
+const app = express();
 app.use(cors());
+app.use(express.json());
 
-const rateLimit = require("express-rate-limit");
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error(err));
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 50,
-});
+const messageRoutes = require("./Routes/message");
+app.use("/api/messages", messageRoutes);
 
-app.use(limiter);
-
-const mongoSanitize = require("express-mongo-sanitize");
-app.use(mongoSanitize());
-
-const xss = require("xss-clean");
-app.use(xss());
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
