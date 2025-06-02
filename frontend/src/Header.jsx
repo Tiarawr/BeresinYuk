@@ -22,7 +22,9 @@ export default function Header() {
             <Link to="/" className={linkClass("/")}>
               Home
             </Link>
-            <button className={linkClass("/submit")}>Submit</button>
+            <Link to="/send" className={linkClass("/send")}>
+              Submit
+            </Link>
             <Link to="/feed" className={linkClass("/feed")}>
               Message
             </Link>

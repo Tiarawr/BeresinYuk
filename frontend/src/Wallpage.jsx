@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function wallpage() {
   return (
@@ -15,9 +16,12 @@ export default function wallpage() {
         </div>
 
         {/* Keep the button wherever you like */}
-        <button className="absolute right-4 top-12 w-[75px] h-[75px] bg-zinc-800 rounded-full flex items-center justify-center hover:bg-zinc-700 transition-colors">
+        <Link
+          to="/send"
+          className="absolute right-4 top-12 w-[75px] h-[75px] bg-zinc-800 rounded-full flex items-center justify-center hover:bg-zinc-700 transition-colors"
+        >
           <img src="chat.svg" alt="" className="w-[30px] h-[30px]" />
-        </button>
+        </Link>
       </div>
 
       {/* GRID OF CARDS */}
