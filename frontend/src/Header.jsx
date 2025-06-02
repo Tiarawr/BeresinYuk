@@ -16,7 +16,16 @@ export default function Header() {
   return (
     <>
       {/* Desktop */}
-      <div className="hidden md:flex w-full justify-center px-4 py-4 mt-6">
+      <div className="hidden md:flex w-full justify-center items-center px-4 py-4 mt-6 gap-4">
+        {/* LOGO */}
+        <div className="flex items-center gap-2">
+          <img src="/logo.svg" alt="Logo" className="h-10 w-auto" />
+          <span className="text-lg font-semibold text-gray-800">
+            Sesandwich
+          </span>
+        </div>
+
+        {/* NAVBAR */}
         <div className="w-full max-w-lg bg-[#1d262d] rounded-full px-4 py-3">
           <div className="flex justify-center flex-wrap gap-2 md:gap-4 text-center">
             <Link to="/" className={linkClass("/")}>
@@ -37,7 +46,7 @@ export default function Header() {
 
       {/* Mobile */}
       <div className="md:hidden w-full px-4 py-4 flex justify-between items-center bg-[#1d262d]">
-        <span className="text-white font-bold text-lg">SendSANDWICH</span>
+        <span className="text-white font-bold text-lg">Sesandwich</span>
         <button onClick={() => setIsOpen(!isOpen)} className="text-white">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

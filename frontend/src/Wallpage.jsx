@@ -5,32 +5,43 @@ import { motion } from "framer-motion";
 export default function Wallpage() {
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
+  const [allMessages, setAllMessages] = useState([]);
   const navigate = useNavigate();
+
   const currentPage = parseInt(searchParams.get("page") || "1");
   const itemsPerPage = 20;
 
-  // Sample data - replace with your actual data
-  const [allMessages] = useState(() => {
-    // Generate 50 sample messages for demonstration
-    return Array.from({ length: 200 }, (_, i) => ({
-      id: i + 1,
-      from: `Person ${i + 1}`,
-      to: "Hermanita",
-      message:
-        "Mija… I hope you can hear my voice, even if only in your dreams. Every soul I claim, every fight I survive — it's all for you. The world is cruel. They feared us, hunted us, used us. But you… you are pure.",
-    }));
-  });
-
-  // Calculate pagination
-  const totalPages = Math.ceil(allMessages.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentMessages = allMessages.slice(startIndex, endIndex);
 
-  // Scroll to top when page changes
+  const queryParam = searchParams.get("query")?.toLowerCase() || "";
+
+  const filteredMessages = allMessages.filter(
+    (msg) =>
+      msg.from.toLowerCase().includes(queryParam) ||
+      msg.to.toLowerCase().includes(queryParam)
+  );
+
+  const totalPages = Math.ceil(filteredMessages.length / itemsPerPage);
+  const currentMessages = filteredMessages.slice(startIndex, endIndex);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/messages");
+        const data = await res.json();
+        setAllMessages(data);
+      } catch (error) {
+        console.error("❌ Failed to fetch messages:", error);
+      }
+    };
+
+    fetchMessages();
+  }, []);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {

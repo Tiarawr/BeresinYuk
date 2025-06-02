@@ -1,15 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Message({ message, onClose }) {
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
   const [messageText, setMessageText] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const maxLength = 255;
+  const handleSend = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ from, to, message: messageText }),
+      });
+
+      if (res.ok) {
+        console.log("✅ Message sent!");
+        navigate("/feed");
+      } else {
+        console.error("❌ Failed to send");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <motion.div
@@ -41,6 +62,8 @@ export default function Message({ message, onClose }) {
               From:
             </label>
             <input
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
               id="from"
               type="text"
               placeholder="Your name"
@@ -57,6 +80,8 @@ export default function Message({ message, onClose }) {
               To:
             </label>
             <input
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
               id="to"
               type="text"
               placeholder="Who you want to send a message to"
@@ -73,12 +98,12 @@ export default function Message({ message, onClose }) {
               Message:
             </label>
             <textarea
+              value={messageText}
+              onChange={(e) => setMessageText(e.target.value)}
               id="message"
               placeholder="Write your message here..."
               rows={6}
               maxLength={maxLength}
-              value={messageText}
-              onChange={(e) => setMessageText(e.target.value)}
               className="w-full bg-zinc-300 rounded-3xl px-6 py-4 text-black text-base md:text-xl font-['Poppins'] placeholder-zinc-500 placeholder:text-lg md:placeholder:text-2xl outline-none resize-none"
             />
           </div>
@@ -88,12 +113,13 @@ export default function Message({ message, onClose }) {
             <span className="text-neutral-400 text-lg md:text-2xl font-normal font-['Poppins']">
               {messageText.length}/{maxLength}
             </span>
-            <Link
-              to="/feed"
+            <button
+              type="button"
+              onClick={handleSend}
               className="bg-zinc-800 text-white px-6 py-3 rounded-full text-lg md:text-2xl font-semibold font-['Poppins'] hover:bg-zinc-700 transition-colors"
             >
               Send
-            </Link>
+            </button>
           </div>
         </form>
       </div>

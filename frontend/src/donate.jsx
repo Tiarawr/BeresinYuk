@@ -26,7 +26,7 @@ export default function donate() {
 
           <div className="flex flex-col md:flex-row gap-6">
             <a
-              href="https://trakteer.id/namakamu"
+              href="https://trakteer.id/Dreamertoyou"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-md transition duration-200"
@@ -34,7 +34,7 @@ export default function donate() {
               🍵 Trakteer
             </a>
             <a
-              href="https://saweria.co/namakamu"
+              href="https://saweria.co/Dreamertoyou"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-6 py-3 rounded-full shadow-md transition duration-200"
