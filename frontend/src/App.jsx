@@ -12,6 +12,7 @@ import Home2 from "./Home2";
 import Home3 from "./Home3";
 import Header from "./Header";
 import DonatePage from "./donate";
+import Wallpage from "./Wallpage";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function AnimatedRoutes() {
           }
         />
         <Route path="/donate" element={<DonatePage />} />
+        <Route path="/feed" element={<Wallpage />} />
       </Routes>
     </AnimatePresence>
   );

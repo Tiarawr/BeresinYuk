@@ -23,7 +23,9 @@ export default function Header() {
               Home
             </Link>
             <button className={linkClass("/submit")}>Submit</button>
-            <button className={linkClass("/message")}>Message</button>
+            <Link to="/feed" className={linkClass("/feed")}>
+              Message
+            </Link>
             <Link to="/donate" className={linkClass("/donate")}>
               Support
             </Link>
