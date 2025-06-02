@@ -159,7 +159,7 @@ export default function Wallpage() {
         {/* Search bar */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-xl h-[60px] bg-zinc-300 rounded-full flex items-center px-4 space-x-3">
           <img
-            src="search_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+            src="/search_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
             alt="Search Icon"
             className="w-8 h-8 text-zinc-600"
           />
