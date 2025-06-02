@@ -38,9 +38,12 @@ export default function Home3() {
 
         {/* Tombol */}
         <div className="mt-12">
-          <button className="btn btn-outline bg-gray-900 text-white px-4 py-5 rounded-full shadow-md hover:shadow-lg hover:bg-gray-800 transition duration-200">
+          <Link
+            to="/send"
+            className="btn btn-outline bg-gray-900 text-white px-4 py-5 rounded-full shadow-md hover:shadow-lg hover:bg-gray-800 transition duration-200"
+          >
             Send a Message
-          </button>
+          </Link>
         </div>
       </div>
     </div>
