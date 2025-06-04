@@ -16,11 +16,11 @@ export default function Wallpage() {
 
   const queryParam = searchParams.get("query")?.toLowerCase() || "";
 
-  const filteredMessages = allMessages.filter(
-    (msg) =>
-      msg.from.toLowerCase().includes(queryParam) ||
-      msg.to.toLowerCase().includes(queryParam)
-  );
+  const filteredMessages = allMessages.filter((msg) => {
+    const from = msg.from?.toLowerCase() || "";
+    const to = msg.to?.toLowerCase() || "";
+    return from.includes(queryParam) || to.includes(queryParam);
+  });
 
   const totalPages = Math.ceil(filteredMessages.length / itemsPerPage);
   const currentMessages = filteredMessages.slice(startIndex, endIndex);
@@ -32,7 +32,9 @@ export default function Wallpage() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await fetch("https://sendmesandwich-production.up.railway.app/api/messages");
+        const res = await fetch(
+          "https://sendmesandwich-production.up.railway.app/api/messages"
+        );
         const data = await res.json();
         setAllMessages(data);
       } catch (error) {
