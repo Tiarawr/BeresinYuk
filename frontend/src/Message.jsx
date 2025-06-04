@@ -47,7 +47,7 @@ export default function Message({ message, onClose }) {
         Send your messages
       </div>
 
-      <div className="mx-auto max-w-4xl text-center text-black text-base md:text-xl font-semibold font-['Poppins'] leading-relaxed">
+      <div className="mx-auto max-w-4xl text-center text-black text-base md:text-xl leading-relaxed">
         We know that some messages carry pieces of your heart. That’s why we
         treat them with the care they deserve. Your identity stays hidden. Your
         words stay yours. Nothing is tracked, nothing is shared. Only the
