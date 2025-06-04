@@ -17,3 +17,7 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB error:", err));
+
+console.log("🚀 Starting server...");
+require("dotenv").config();
+console.log("✅ .env loaded, MONGO_URI =", process.env.MONGO_URI);
