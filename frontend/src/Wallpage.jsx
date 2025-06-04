@@ -16,11 +16,11 @@ export default function Wallpage() {
 
   const queryParam = searchParams.get("query")?.toLowerCase() || "";
 
-  const filteredMessages = allMessages.filter((msg) => {
-    const from = msg.from?.toLowerCase() || "";
-    const to = msg.to?.toLowerCase() || "";
-    return from.includes(queryParam) || to.includes(queryParam);
-  });
+  const filteredMessages = allMessages.filter(
+    (msg) =>
+      msg.from.toLowerCase().includes(queryParam) ||
+      msg.to.toLowerCase().includes(queryParam)
+  );
 
   const totalPages = Math.ceil(filteredMessages.length / itemsPerPage);
   const currentMessages = filteredMessages.slice(startIndex, endIndex);
