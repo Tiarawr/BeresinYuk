@@ -15,7 +15,7 @@ export default function Message({ message, onClose }) {
   const maxLength = 255;
   const handleSend = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/message", {
+      const res = await fetch("http://localhost:5000/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ from, to, message: messageText }),
