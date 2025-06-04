@@ -15,11 +15,14 @@ export default function Message({ message, onClose }) {
   const maxLength = 255;
   const handleSend = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ from, to, message: messageText }),
-      });
+      const res = await fetch(
+        "https://sendmesandwich-production.up.railway.app/api/messages",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ from, to, message: messageText }),
+        }
+      );
 
       if (res.ok) {
         console.log("✅ Message sent!");

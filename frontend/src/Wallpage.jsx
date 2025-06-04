@@ -32,7 +32,7 @@ export default function Wallpage() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/messages");
+        const res = await fetch("https://sendmesandwich-production.up.railway.app/api/messages");
         const data = await res.json();
         setAllMessages(data);
       } catch (error) {
